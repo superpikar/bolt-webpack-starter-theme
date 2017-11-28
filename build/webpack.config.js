@@ -1,5 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const TEMPLATE_URL = '/theme/bolt-webpack-starter-theme/';
 const OUTPUT_DIR = {
@@ -43,6 +45,18 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin({
       filename: OUTPUT_DIR.CSS+'style-bundle.css'
+    }),
+    // compress extracted css
+    new OptimizeCssAssetsPlugin({
+      cssProcessorOptions: { discardComments: {removeAll: true } },
+      canPrint: true
+    }),
+    // uglify javascript file
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      sourceMap: false // produce or not the *.js.map file
     }),
   ]
 };
