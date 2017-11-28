@@ -1,0 +1,16 @@
+$TEMPLATE_URL : '/theme/bolt-webpack-starter-theme/';
+
+h2 {
+  background: #313131;
+  color: white;
+}
+
+header.header1 {
+  height: 200px;
+  background: url('../images/background.png') no-repeat;
+}
+
+.header2 {
+  height: 200px;
+  background: url($TEMPLATE_URL+'static/background.png') no-repeat;
+}
