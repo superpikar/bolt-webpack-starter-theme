@@ -12,8 +12,11 @@ module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: OUTPUT_DIR.JS+'bundle.js',
-    path: path.resolve(__dirname, 'dist'),  // output directory name, relative to current webpack project directory
+    path: path.resolve(__dirname, '../dist'),  // output directory name, relative to current webpack project directory
     publicPath: TEMPLATE_URL+'dist/'  // public output directory used to generate the directory in bundler
+  },
+  stats: {
+    colors: true,
   },
   module: {
     rules: [
