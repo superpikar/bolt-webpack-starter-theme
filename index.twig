@@ -1,14 +1,15 @@
+{# index.twig #}
 {% extends 'master.twig' %}
 
 {% block body %}
   <h2>
-    this is content
+    My Blog
   </h2>
   {% for record in records %}
   <article>
-    <h2>
+    <h4>
       <a href="{{ record.link }}">{{ record.title }}</a>
-    </h2>
+    </h4>
   </article>
   {% else %}
   <article>

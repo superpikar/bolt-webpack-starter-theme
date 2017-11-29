@@ -63,6 +63,7 @@ module.exports = {
       {
         files: [
           '**/*.twig',  // watch .twig files also
+          '**/*.yml',  // watch .twig files also
         ],
         // browse to http://localhost:3000/ during development 
         host: 'localhost',
