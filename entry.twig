@@ -1,0 +1,9 @@
+{% extends 'master.twig' %}
+
+{% block body %}
+  {% if record is defined %}
+    <h1>{{ record.title }}</h1>
+    {{ popup(record.image, 1200, 500) }}
+    {{ record.body }}
+  {% endif %}
+{% endblock %}

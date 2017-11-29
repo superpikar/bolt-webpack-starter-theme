@@ -4,4 +4,15 @@
   <h2>
     this is content
   </h2>
+  {% for record in records %}
+  <article>
+    <h2>
+      <a href="{{ record.link }}">{{ record.title }}</a>
+    </h2>
+  </article>
+  {% else %}
+  <article>
+    no article found
+  </article>
+  {% endfor %}
 {% endblock %}

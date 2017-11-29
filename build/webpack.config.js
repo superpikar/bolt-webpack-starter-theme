@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const TEMPLATE_URL = '/theme/bolt-webpack-starter-theme/';
 const OUTPUT_DIR = {
@@ -58,5 +59,24 @@ module.exports = {
       },
       sourceMap: false // produce or not the *.js.map file
     }),
+    new BrowserSyncPlugin(
+      {
+        files: [
+          '**/*.twig',  // watch .twig files also
+        ],
+        // browse to http://localhost:3000/ during development 
+        host: 'localhost',
+        port: 3000,
+        // proxy the Webpack Dev Server endpoint 
+        // (which should be serving on http://bolt3-webpack.com) 
+        // through BrowserSync 
+        proxy: 'http://bolt3-webpack.com/'
+      },
+      // plugin options 
+      {
+        // BrowserSync reloading the page after compilation is finished
+        reload: true
+      }
+    )
   ]
 };
