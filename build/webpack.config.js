@@ -4,7 +4,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
-const TEMPLATE_URL = '/theme/bolt-webpack-starter-theme/';
+// your local website url, used by browser-sync as proxy
+const PROXY_URL = 'http://bolt3-webpack.com/';  
+// your template directory path, used by webpack as a root path when transform relative path to absolute path in css loader
+const TEMPLATE_PATH = '/theme/bolt-webpack-starter-theme/'; 
 const OUTPUT_DIR = {
   JS: 'js/',
   CSS: 'css/',
@@ -16,7 +19,7 @@ module.exports = {
   output: {
     filename: OUTPUT_DIR.JS+'bundle.js',
     path: path.resolve(__dirname, '../dist'),  // output directory name, relative to current webpack project directory
-    publicPath: TEMPLATE_URL+'dist/'  // public output directory used to generate the directory in bundler
+    publicPath: TEMPLATE_PATH+'dist/'  // public output directory used to generate the directory in bundler
   },
   stats: {
     colors: true,
@@ -71,7 +74,7 @@ module.exports = {
         // proxy the Webpack Dev Server endpoint 
         // (which should be serving on http://bolt3-webpack.com) 
         // through BrowserSync 
-        proxy: 'http://bolt3-webpack.com/'
+        proxy: PROXY_URL
       },
       // plugin options 
       {
