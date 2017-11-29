@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // your local website url, used by browser-sync as proxy
 const PROXY_URL = 'http://bolt3-webpack.com/';  
@@ -17,7 +18,7 @@ const OUTPUT_DIR = {
 module.exports = {
   entry: './src/js/index.js',
   output: {
-    filename: OUTPUT_DIR.JS+'bundle.js',
+    filename: OUTPUT_DIR.JS+'[name].js',
     path: path.resolve(__dirname, '../dist'),  // output directory name, relative to current webpack project directory
     publicPath: TEMPLATE_PATH+'dist/'  // public output directory used to generate the directory in bundler
   },
@@ -81,6 +82,13 @@ module.exports = {
         // BrowserSync reloading the page after compilation is finished
         reload: true
       }
-    )
+    ),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: ({ resource }) => /node_modules/.test(resource),
+    }),
+    new CleanWebpackPlugin(['dist'], {
+      root: path.resolve(__dirname, '../'),
+    }),
   ]
 };

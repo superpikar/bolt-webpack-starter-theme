@@ -55,3 +55,8 @@ Put the following code to include css and js in `master.twig`
 - handle font
 - use bulma as css framework
 
+## Reference 
+- https://webpack.js.org/guides/
+- https://deliciousbrains.com/develop-wordpress-plugin-webpack-3-react/ 
+- https://jeremygayed.com/dynamic-vendor-bundling-in-webpack-528993e48aab
+
